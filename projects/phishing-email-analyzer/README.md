@@ -1,46 +1,37 @@
 # Phishing Email Analyzer
 
-How a suspicious email gets analyzed in a SOC: headers first, content second, verdict last. Worked end to end on one example. All addresses, domains, and IPs below are fictional and use reserved example ranges.
+A working header analysis tool plus the manual walkthrough behind it. The script, analyze_headers.py, reads an .eml file and runs the checks an analyst runs: authentication results, domain mismatches, look-alike domains, and IP-based links.
 
-## The example
+## Run it
 
-A user reports an email:
+    python3 analyze_headers.py sample_phish.eml
 
-- From display name: IT Helpdesk
-- From address: support@micros0ft-verify.example.com
-- Reply-To: helpdesk-reply@secure-login.example.net
-- Subject: Urgent: your password expires today
-- Body: a link labeled "Sign in to keep your account" pointing to http://192.0.2.77/login, plus an attachment named Invoice_Q3.pdf.exe
+Expected result on the sample: five findings (SPF fail, DKIM none, DMARC fail, Reply-To mismatch, look-alike domain, IP link) and a LIKELY PHISHING verdict. The sample message is fictional; every address uses reserved example domains and documentation IP ranges.
 
-## Step 1: Authentication results in the headers
+## What the tool checks
 
-    Authentication-Results: mx; spf=fail; dkim=none; dmarc=fail
+1. Authentication-Results: SPF, DKIM, and DMARC. Fails and nones are findings, in that order of weight.
+2. From vs Reply-To vs Return-Path domains. A reply path that leaves the claimed organization is a classic phish construction.
+3. Look-alike domains: common digit substitutions (0 for o, 1 for l) are normalized and compared against known brand domains.
+4. Links whose destination is a raw IP address instead of a hostname.
 
-- SPF fail: the sending server is not authorized for the claimed domain.
-- DKIM none: no signature to verify.
-- DMARC fail with a strict policy means the message should never have been delivered; its presence in the inbox is itself worth a note to the email team.
+Three or more independent findings returns LIKELY PHISHING. One or two returns SUSPICIOUS, because a single failed check has innocent explanations and a pile of them does not.
 
-## Step 2: Address checks
+## The manual walkthrough
 
-- The From domain (micros0ft-verify.example.com) is a look-alike: a zero replaces the letter o, and the real organization does not own it.
-- The Reply-To domain differs from the From domain, so replies leave the claimed organization entirely. Legitimate senders rarely do this.
+The tool automates the header work. The content read stays human:
 
-## Step 3: Content checks
+- Urgency and threat in the subject and first line: pressure is a social engineering marker, not a writing style.
+- The ask: credentials, payment, or an attachment. Legitimate IT does not collect passwords by email.
+- Attachment names with double extensions, such as Invoice_Q3.pdf.exe.
+- Greeting and signature quality against what the real organization sends.
 
-- Urgency and threat: "expires today" pressures the reader past careful thought. Classic social engineering marker.
-- The link text says one thing; the destination is a raw IP address over plain HTTP. No legitimate sign-in page works that way.
-- The attachment ends in .pdf.exe: a double extension hiding an executable behind a document icon.
+## Verdict and actions on a real case
 
-## Step 4: Verdict and actions
-
-Verdict: phishing, high confidence. Four independent checks failed; any two would justify the call.
-
-Actions:
-
-1. Tell the user: do not click, do not reply, delete after the report is filed. If they clicked, treat as a credential exposure: force a password reset and review sign-in logs for that account.
-2. Search the mailbox logs for the same subject and sender: who else received it?
-3. Block the sender domain and the destination IP at the email gateway and proxy.
-4. File the incident report with the indicators (sender domain, reply-to domain, URL, IP, attachment hash if available).
+1. Tell the user: do not click, do not reply. If they clicked, treat as credential exposure: reset the password and review that account's sign-in logs.
+2. Search mailbox logs for the same sender and subject: who else received it?
+3. Block the sender domain and destination at the gateway and proxy.
+4. File the incident report with the indicators: sender domain, reply-to domain, URLs, IPs, and the attachment hash if one exists.
 
 ## Quick reference: header fields that matter
 

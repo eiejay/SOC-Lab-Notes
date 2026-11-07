@@ -1,0 +1,6 @@
+index=dns earliest=-24h
+| bin _time span=5m
+| stats count by src, query
+| where count > 20
+| stats dc(_time) as intervals, sum(count) as total by src, query
+| where intervals > 10

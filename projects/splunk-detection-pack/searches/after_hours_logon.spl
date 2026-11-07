@@ -1,0 +1,4 @@
+index=windows EventCode=4624 Logon_Type=10 earliest=-24h
+| eval hour = strftime(_time, "%H")
+| where hour < 5 OR hour > 23
+| table _time, Account_Name, src_ip

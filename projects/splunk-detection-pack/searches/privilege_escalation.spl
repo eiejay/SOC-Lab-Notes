@@ -1,0 +1,2 @@
+index=windows EventCode=4732 earliest=-24h
+| table _time, Account_Name, TargetUserName, Group_Name

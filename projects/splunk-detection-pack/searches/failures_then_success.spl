@@ -1,0 +1,3 @@
+index=windows (EventCode=4625 OR EventCode=4624) earliest=-1h
+| stats values(EventCode) as codes, count(eval(EventCode=4625)) as fails by Account_Name, src_ip
+| where fails >= 5 AND mvfind(codes, "4624") >= 0

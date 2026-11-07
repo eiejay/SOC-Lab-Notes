@@ -1,0 +1,19 @@
+Return-Path: <bounces@secure-login.example.net>
+Received: from mail.secure-login.example.net (198.51.100.77) by mx.example.org with ESMTP; Fri, 06 Nov 2026 08:12:44 -0600
+Authentication-Results: mx.example.org; spf=fail (sender IP is 198.51.100.77) smtp.mailfrom=micros0ft-verify.example.com; dkim=none; dmarc=fail (p=REJECT) header.from=micros0ft-verify.example.com
+From: IT Helpdesk <support@micros0ft-verify.example.com>
+Reply-To: helpdesk-reply@secure-login.example.net
+To: employee@example.org
+Subject: Urgent: your password expires today
+Message-ID: <20261106081244.7712@secure-login.example.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Hello,
+
+Our records show your password expires today. If you do not sign in now, your account will be locked and you will lose access to your email.
+
+Sign in to keep your account:
+http://192.0.2.77/login
+
+IT Helpdesk
