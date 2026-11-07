@@ -1,38 +1,24 @@
 # SOC Lab Notes
 
-Security Operations Center (SOC) analyst training labs, workflows, and reference notes.
+My working notebook from the lab bench, built up while training for Tier 1 SOC work: the triage workflow I follow, the documents I reach for, and four small tools I built to understand detection from the inside instead of just reading about it. Two of them are plain Python. One is a Splunk detection pack. One is a machine learning model I trained myself, small enough to explain line by line, which was the point.
 
-This repository collects the working documents from my SOC training: how an alert gets triaged, how an incident gets documented, and how logs get read during an investigation. It is a practice and reference repository, built from hands-on lab work and coursework in security operations (CompTIA Security+ and CySA+ level material).
+## The tools
 
-## Projects
+- projects/brute-force-detector: reads an sshd auth log and flags the one pattern that matters, repeated failures followed by a success from the same source. I ran it against the sample log until the verdicts matched what my eyes said.
+- projects/phishing-email-analyzer: scores a saved email the way I was taught to work a phish ticket: SPF, DKIM, DMARC, Reply-To tricks, look-alike domains, raw IP links. Seven findings on the included sample, and I can walk through every one.
+- projects/phishing-ml-classifier: my first Naive Bayes model. It learns phish from legit out of 26 labeled messages and earns an honest 71 percent on messages it never saw. Rules catch yesterday's phish; I wanted to feel where learning starts to beat rules, and where it does not.
+- projects/splunk-detection-pack: five searches I would actually schedule: brute force, failures then success, DNS beaconing, privilege escalation, after hours logon, each with the tuning notes that keep a detection from becoming a noise machine.
 
-Three small, working projects that mirror daily Tier 1 SOC tasks:
+## The documents
 
-1. [Brute Force Detector](projects/brute-force-detector/): a Python script that reads a Linux authentication log and flags source IPs with repeated failed logins, the most common real alert in any SOC queue.
-2. [Phishing Email Analyzer](projects/phishing-email-analyzer/): a header and content analysis walkthrough, worked end to end on an example phish.
-3. [Splunk Detection Pack](projects/splunk-detection-pack/): five documented Splunk searches for common detections, each with purpose, SPL, and tuning notes.
+- triage-workflow.md: how I work an alert in the first fifteen minutes, and the questions I answer before I escalate or close.
+- incident-report-template.md: the report shape I fill in while the incident is warm, not after.
+- log-analysis-notes.md: worked examples from auth logs, including the brute force pattern the detector automates.
 
-## Reference documents
+## How I use this repo
 
-- [Alert Triage Workflow](triage-workflow.md): the step-by-step process for receiving, validating, prioritizing, and escalating a security alert.
-- [Incident Report Template](incident-report-template.md): a fill-in report structure for documenting an incident from detection to closure.
-- [Log Analysis Notes](log-analysis-notes.md): notes on reading authentication, network, and endpoint logs during triage.
-
-## Skills practiced
-
-- Alert triage and escalation in a SIEM environment (Splunk)
-- Log analysis: Windows Event Logs, authentication events, firewall and proxy data
-- Incident documentation and shift handoff notes
-- Detection concepts: brute force, phishing, malware callbacks, privilege escalation
-- Classifying attacker behavior with the MITRE ATT&CK framework
-
-## Tools
-
-- Splunk (search and reporting)
-- Python 3 for log parsing
-- Linux command line for log review
-- MITRE ATT&CK
+WALKTHROUGH.md runs every tool against its sample data with the real output, so anyone can reproduce what I claim in about five minutes. If I cannot run it in front of you, I do not list it as a skill.
 
 ## License
 
-MIT
+MIT. The tools are small and the ideas are standard practice; take what helps.
