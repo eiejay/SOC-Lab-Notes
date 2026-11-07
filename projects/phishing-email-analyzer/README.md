@@ -6,7 +6,7 @@ A working header analysis tool plus the manual walkthrough behind it. The script
 
     python3 analyze_headers.py sample_phish.eml
 
-Expected result on the sample: five findings (SPF fail, DKIM none, DMARC fail, Reply-To mismatch, look-alike domain, IP link) and a LIKELY PHISHING verdict. The sample message is fictional; every address uses reserved example domains and documentation IP ranges.
+Expected result on the sample: seven findings (SPF fail, DKIM none, DMARC fail, Reply-To mismatch, Return-Path mismatch, look-alike domain, IP link) and a LIKELY PHISHING verdict. The sample message is fictional; every address uses reserved example domains and documentation IP ranges.
 
 ## What the tool checks
 
