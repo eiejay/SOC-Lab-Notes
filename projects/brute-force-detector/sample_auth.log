@@ -1,0 +1,16 @@
+Nov  6 08:01:12 bastion sshd[2211]: Accepted password for jsmith from 192.0.2.14 port 51234 ssh2
+Nov  6 08:03:44 bastion sshd[2218]: Failed password for invalid user admin from 203.0.113.45 port 41022 ssh2
+Nov  6 08:03:47 bastion sshd[2219]: Failed password for invalid user admin from 203.0.113.45 port 41031 ssh2
+Nov  6 08:03:50 bastion sshd[2220]: Failed password for root from 203.0.113.45 port 41040 ssh2
+Nov  6 08:03:53 bastion sshd[2221]: Failed password for invalid user oracle from 203.0.113.45 port 41055 ssh2
+Nov  6 08:03:57 bastion sshd[2222]: Failed password for invalid user admin from 203.0.113.45 port 41061 ssh2
+Nov  6 08:04:01 bastion sshd[2223]: Failed password for root from 203.0.113.45 port 41077 ssh2
+Nov  6 08:04:05 bastion sshd[2224]: Failed password for jsmith from 203.0.113.45 port 41090 ssh2
+Nov  6 08:04:09 bastion sshd[2225]: Accepted password for jsmith from 203.0.113.45 port 41102 ssh2
+Nov  6 08:15:31 bastion sshd[2301]: Failed password for mlopez from 198.51.100.23 port 52210 ssh2
+Nov  6 08:16:02 bastion sshd[2302]: Failed password for mlopez from 198.51.100.23 port 52244 ssh2
+Nov  6 08:16:40 bastion sshd[2303]: Accepted password for mlopez from 198.51.100.23 port 52290 ssh2
+Nov  6 09:02:18 bastion sshd[2410]: Accepted password for tnguyen from 192.0.2.51 port 49871 ssh2
+Nov  6 09:44:55 bastion sshd[2519]: Failed password for invalid user test from 203.0.113.99 port 60112 ssh2
+Nov  6 09:45:02 bastion sshd[2520]: Failed password for invalid user test from 203.0.113.99 port 60120 ssh2
+Nov  6 09:45:09 bastion sshd[2521]: Failed password for invalid user guest from 203.0.113.99 port 60131 ssh2
