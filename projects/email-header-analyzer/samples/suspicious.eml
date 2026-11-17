@@ -1,0 +1,20 @@
+Delivered-To: jdoe@example.com
+Received: by 2002:a05:6000:1a4f:0:0:0:0 with SMTP id q7csp7654321wrx;
+        Fri, 7 Nov 2026 11:40:03 -0800 (PST)
+Received: from mta.deals-weekly.example (mta.deals-weekly.example. [198.51.100.25])
+        by mx.example.com with ESMTPS id mn2210.2026.11.07.11.40.02
+        for <jdoe@example.com>;
+        Fri, 07 Nov 2026 11:40:02 -0800 (PST)
+Authentication-Results: mx.example.com;
+       dkim=pass header.i=@deals-weekly.example header.s=s1;
+       spf=pass (example.com: domain of news@deals-weekly.example designates 198.51.100.25 as permitted sender) smtp.mailfrom=deals-weekly.example
+Return-Path: <news@deals-weekly.example>
+From: "Deals Weekly" <news@deals-weekly.example>
+Reply-To: <offers@other-mailer-example.net>
+To: jdoe@example.com
+Subject: This week only: up to 40 percent off storage gear
+Date: Fri, 07 Nov 2026 11:40:01 -0800
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+Your weekly deals roundup is here. Unsubscribe any time.

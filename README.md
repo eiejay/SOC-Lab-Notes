@@ -1,6 +1,6 @@
 # SOC Lab Notes
 
-My working notebook from the lab bench, built up while training for Tier 1 SOC work: the triage workflow I follow, the documents I reach for, and four small tools I built to understand detection from the inside instead of just reading about it. Two of them are plain Python. One is a Splunk detection pack. One is a machine learning model I trained myself, small enough to explain line by line, which was the point.
+My working notebook from the lab bench, built up while training for Tier 1 SOC work: the triage workflow I follow, the documents I reach for, and eight small tools I built to understand detection from the inside instead of just reading about it. Six of them are plain Python. One is a Splunk detection pack. One is a machine learning model I trained myself, small enough to explain line by line, which was the point.
 
 ## The tools
 
@@ -8,6 +8,10 @@ My working notebook from the lab bench, built up while training for Tier 1 SOC w
 - projects/phishing-email-analyzer: scores a saved email the way I was taught to work a phish ticket: SPF, DKIM, DMARC, Reply-To tricks, look-alike domains, raw IP links. Seven findings on the included sample, and I can walk through every one.
 - projects/phishing-ml-classifier: my first Naive Bayes model. It learns phish from legit out of 26 labeled messages and earns an honest 71 percent on messages it never saw. Rules catch yesterday's phish; I wanted to feel where learning starts to beat rules, and where it does not.
 - projects/splunk-detection-pack: five searches I would actually schedule: brute force, failures then success, DNS beaconing, privilege escalation, after hours logon, each with the tuning notes that keep a detection from becoming a noise machine.
+- projects/proxy-log-analyzer: reads a web proxy log and flags the patterns that matter: beaconing rhythms too regular to be human, uploads big enough to be exfiltration, rare domains, and throwaway TLDs. The sample log hides a vendor agent that calls home irregularly, as a control case the tool must not flag.
+- projects/kill-chain-mapper: takes a described incident as JSON and maps every event to its MITRE ATT&CK tactic and Cyber Kill Chain phase, then prints the honest part: which phases were never observed, and what that says about detection gaps.
+- projects/edr-telemetry-analyzer: works Sysmon style process events the way an EDR does: Office spawning shells, encoded PowerShell, temp path execution, unsigned binaries, and a svchost wearing the wrong parent. The sample is one full attack chain plus the benign software that must stay quiet.
+- projects/email-header-analyzer: the header forensics companion to the phishing analyzer. SPF, DKIM and DMARC, but also alignment, display name spoofing, and Reply-To redirection, scored with every reason printed. Three sample messages: a clean alert at 0, a sloppy marketing mail at 2, a phish at 13.
 
 ## The documents
 

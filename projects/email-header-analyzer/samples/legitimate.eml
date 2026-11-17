@@ -1,0 +1,25 @@
+Delivered-To: jdoe@example.com
+Received: by 2002:a05:6000:1a4f:0:0:0:0 with SMTP id x20csp1234567wrx;
+        Fri, 7 Nov 2026 14:02:11 -0800 (PST)
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id abc123.2026.11.07.14.02.10
+        for <jdoe@example.com>;
+        Fri, 07 Nov 2026 14:02:11 -0800 (PST)
+Received: from accounts.google.com (accounts.google.com. [172.217.14.206])
+        by mail-sor-f41.google.com with ESMTPS id def456.2026.11.07.14.02.09
+        for <jdoe@example.com>;
+        Fri, 07 Nov 2026 14:02:10 -0800 (PST)
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@accounts.google.com header.s=20230601;
+       spf=pass (google.com: domain of no-reply@accounts.google.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=accounts.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=accounts.google.com
+Return-Path: <no-reply@accounts.google.com>
+From: Google <no-reply@accounts.google.com>
+To: jdoe@example.com
+Subject: Security alert: new sign-in to your account
+Date: Fri, 07 Nov 2026 14:02:09 -0800
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+A new sign-in to your Google account was detected from Dallas, TX.
+If this was you, no action is needed.
